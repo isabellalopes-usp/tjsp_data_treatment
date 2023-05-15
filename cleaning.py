@@ -4,6 +4,7 @@ import re
 from google.colab import drive
 drive.mount('/content/drive')
 
+#cria lista de termos que obtiveram resultados, de acordo com a alocacao no diretorio
 lista=[]
 todos = pd.read_excel("/content/drive/termos_utilizados.xlsx")
 t_total = todos['termo']
@@ -11,6 +12,7 @@ for t in t_total:
   if os.path.exists("/content/drive/com-acordaos-"+t+".xlsx"):
     lista.append(t)
 
+#retira termos definidos na lista de termos a partir do metodo regex
 def retira_termos():
   #retirando termos
   acordaos=acordaos_originais
@@ -27,7 +29,8 @@ def retira_termos():
     relator1 = relator.upper()
     if (relator1 in str(acordaos[i])):
       acordaos[i] = acordaos[i].replace(relator1, "") 
-      
+
+#lista de termos a serem retirados, no formato regez      
 termos=['TRIBUNAL.+JUSTI.A.+PAULO','TRIBUNAL.+JUSTI.A','PODER\sJ.+O','AS.+ELETR.NICA','ac.rd.o\n','\s\srelator(a)\n','\s\s\srelator\n','apel.+\s.+\d','reg.+\d','voto.+\d','decl.+\d','s.o.+\sde\s.+\sde\s20[0-2][0-5]','c.mara\n','c.mara:','.*c.mara.+justi.a\n','.*c.mara.+paulo\n','fl.*\d','\n..\n','\n.\n','\n\s*\n','\s\B']
 
 #para cada termo do resultado
