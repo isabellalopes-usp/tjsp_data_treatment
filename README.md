@@ -1,11 +1,18 @@
 # tjsp_data_treatment
 
-Coleta de termos relevantes e limpeza de acórdãos do TJSP
+Collection of relevant terms and cleaning of TJSP judgments
 
-Antes de utilizar as funções disponibilizadas, é necessário ter feito a raspagem de dados no TJSP de acordo com um determinada lista de termos. Estas funções têm o objetivo de facilitar a análise e a visualização das decisões raspadas.
+Before using the provided functions, it is necessary to have scraped data from TJSP according to a specific list of terms. These functions aim to facilitate the analysis and visualization of the scraped decisions.
 
-O arquivo **"cleaning.py" **contém um programa que limpa espaços em branco e termos repetitivos dos acórdãos;
+The file **"cleaning.py"** contains a program that removes white spaces and repetitive terms from the judgments.
 
-O código em **"collection.py"** aloca, em uma nova coluna das planilhas, os trechos de cada acórdão que contém o termo buscado, e também destaca menções entre processos diferentes;
+The code in **"collection.py"** allocates, in a new column of the spreadsheets, the excerpts from each judgment that contain the searched term, and also highlights mentions between different cases.
 
-Por fim, com **"mark_new_results.py"**, as planilhas de raspagem são comparadas com suas versões anteriores, e os novos processos encontrados são marcados com o caractere "*".
+Finally, with **"mark_new_results.py"**, the scraping spreadsheets are compared with their previous versions, and the new found cases are marked with the "*" character.
+
+In all files, it is necessary to change the directory paths for opening and saving spreadsheets.
+
+
+
+
+
