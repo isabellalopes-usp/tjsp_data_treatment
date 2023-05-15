@@ -3,23 +3,26 @@ import pandas as pd
 from google.colab import drive
 drive.mount('/content/drive')
 
+#cria lista de termos que obtiveram resultados, de acordo com a alocacao no diretorio
 lista=[]
 todos = pd.read_excel("/content/drive/termos_utilizados.xlsx")
 t_total = todos['termo']
 for t in t_total:
   if os.path.exists("/content/drive/com-acordaos-"+t+".xlsx"):
     lista.append(t)
-    
-def busca_ocorrencias (termo, i, parada):
 
+#busca, no acordao, o(s) paragrafo(s) que contem o termo procurado.    
+def busca_ocorrencias (termo, i, parada):
+  
+  #cria variaveis auxiliares de busca
   final = ""
   termo = termo.upper()
   texto = acordaos[i].upper()
   texto = normalize('NFKD', texto).encode('ASCII','ignore').decode('ASCII')
   numero = 1
-
+  
   tamanho = len(texto)
-  while((termo in texto)):
+  while((termo in texto)): #busca ocorrencias quantas vezes o termo for mencionado
     start = int(texto.index(str(termo)))
     letra = str(acordaos[i][start])
     substituir = acordaos[i][start]
@@ -36,11 +39,12 @@ def busca_ocorrencias (termo, i, parada):
 
     letra = str(acordaos[i][start-1])
     j = 2
-    while (letra!=str(parada)):
+    while (letra!=str(parada)): #le ate encontrar o criterio de parada
       novo = str(letra)+str(novo)
       letra = str(acordaos[i][start-j])
       j+=1
-
+    
+    #retorna resultados
     texto = texto.replace(termo,"", 1)
     final = str(final) + str("OCORRENCIA ") + str(numero)+ str(": ") + str(novo)+str('\n')+str('\n')
     numero+=1
@@ -50,7 +54,8 @@ def busca_ocorrencias (termo, i, parada):
 
 
 def busca_mencoes(i,num):
-
+    
+    #passa numero do processo para o formato com pontos e tracos
     num = str(num)
     n_processo0 = num
 
@@ -86,6 +91,7 @@ def busca_mencoes(i,num):
 
     m = ""
     
+    #busca numero no novo formato em outros acordaos
     for l in range (0, len(acordaos)):
       if(processo[l]!=processo[i] and (str(n_processo1) in str(acordaos[l]))):
         acordaos[l] = acordaos[l].replace(n_processo1,n_processo0, 1)
