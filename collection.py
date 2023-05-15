@@ -1,9 +1,5 @@
 #importa pacotes e bibliotecas
 import pandas as pd
-import numpy as np
-import re
-import os
-from unicodedata import normalize
 from google.colab import drive
 drive.mount('/content/drive')
 
