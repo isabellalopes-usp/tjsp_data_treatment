@@ -8,10 +8,10 @@ from google.colab import drive
 drive.mount('/content/drive')
 
 lista=[]
-todos = pd.read_excel("/content/drive/Shareddrives/Inteligência Artificial: Regulação Jurídica e Políticas Públicas/etapa_1/termos_utilizados.xlsx")
+todos = pd.read_excel("/content/drive/termos_utilizados.xlsx")
 t_total = todos['termo']
 for t in t_total:
-  if os.path.exists("/content/drive/Shareddrives/Inteligência Artificial: Regulação Jurídica e Políticas Públicas/etapa_1/TJSP/Raspagem/arquivos_finais/com-acordaos-"+t+".xlsx"):
+  if os.path.exists("/content/drive/com-acordaos-"+t+".xlsx"):
     lista.append(t)
 
 def retira_termos():
@@ -36,7 +36,7 @@ termos=['TRIBUNAL.+JUSTI.A.+PAULO','TRIBUNAL.+JUSTI.A','PODER\sJ.+O','AS.+ELETR.
 #para cada termo do resultado
 for z in lista:
   #abre planilha
-  caminho = "/content/drive/Shareddrives/Inteligência Artificial: Regulação Jurídica e Políticas Públicas/etapa_1/TJSP/Raspagem/arquivos_finais/com-acordaos-"+z+".xlsx"
+  caminho = "/content/drive/com-acordaos-"+z+".xlsx"
   df = pd.read_excel(caminho)
 
   #cria vetores
